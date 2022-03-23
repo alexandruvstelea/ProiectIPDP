@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Barber\'s App</string>
+
+    <string-array name="genderItems">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
