@@ -6,4 +6,11 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string-array name="accountTypeItems">
+        <item>Account Type</item>
+        <item>Client</item>
+        <item>Barber</item>
+        <item>Shop Manager</item>
+    </string-array>
 </resources>

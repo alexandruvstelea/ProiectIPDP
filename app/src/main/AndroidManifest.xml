@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarbersApp">
         <activity
-            android:name=".HomePageActivity"
+            android:name=".CreateShopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomePageActivityManager"
+            android:exported="false" />
+        <activity
+            android:name=".HomePageActivityClient"
             android:exported="false" />
         <activity
             android:name=".CreateAccountActivity"

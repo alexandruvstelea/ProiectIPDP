@@ -30,29 +30,38 @@ public class LogInActivity extends AppCompatActivity {
         logInButton = findViewById(R.id.loginButton);
         createAccountButton = findViewById(R.id.createAccountButton);
 
-        createAccountButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogInActivity.this, CreateAccountActivity.class);
-                startActivity(intent);
-            }
+        createAccountButton.setOnClickListener(createAccount -> {
+            Intent intent = new Intent(LogInActivity.this, CreateAccountActivity.class);
+            startActivity(intent);
         });
 
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userName = userNameBox.getText().toString();
-                String password = passWordBox.getText().toString();
-                if (checkCredentials(userName, password)) {
-                    Intent intent = new Intent(LogInActivity.this, HomePageActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(LogInActivity.this, "LogIn succesfull", Toast.LENGTH_SHORT).show();
+        logInButton.setOnClickListener(login -> {
+            String userName = userNameBox.getText().toString().toUpperCase();
+            String password = passWordBox.getText().toString();
+            String accountType = getAccountType(userName);
+            if (checkCredentials(userName, password)) {
+                switch (accountType) {
+                    case "CLIENT":
+                        Intent intent = new Intent(LogInActivity.this, HomePageActivityClient.class);
+                        intent.putExtra("username", userName);
+                        startActivity(intent);
+                        finish();
+                        Toast.makeText(LogInActivity.this, "LogIn successful", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "BARBER":
+                        Toast.makeText(LogInActivity.this, "BARBER GUI NOT YET IMPLEMENTED", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "SHOP MANAGER":
+                        intent = new Intent(LogInActivity.this, HomePageActivityManager.class);
+                        intent.putExtra("username", userName);
+                        startActivity(intent);
+                        finish();
+                        Toast.makeText(LogInActivity.this, "LogIn successful", Toast.LENGTH_SHORT).show();
+                        break;
                 }
-                else
-                    Toast.makeText(LogInActivity.this, "Wrong credentials!", Toast.LENGTH_SHORT).show();
-            }
+            } else
+                Toast.makeText(LogInActivity.this, "Wrong credentials!", Toast.LENGTH_SHORT).show();
         });
-
     }
 
     @Override
@@ -60,13 +69,16 @@ public class LogInActivity extends AppCompatActivity {
         Toast.makeText(LogInActivity.this, "Back button disabled!", Toast.LENGTH_SHORT).show();
     }
 
+    private String getAccountType(String userName) {
+        UserDB db = UserDB.getDBInstance(this.getApplicationContext());
+        return db.userDAO().getAccountType(userName);
+    }
+
     private boolean checkCredentials(String userName, String password) {
         UserDB db = UserDB.getDBInstance(this.getApplicationContext());
-        String realPassword = db.userDAO().getPassword(userName.toUpperCase());
-        if (realPassword.equals(password)) {
-            finish();
-            return true;
-        }
+        String realPassword = db.userDAO().getPassword(userName);
+        if (realPassword != null)
+            if (realPassword.equals(password)) return true;
         return false;
     }
 }

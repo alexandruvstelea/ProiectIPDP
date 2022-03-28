@@ -18,6 +18,9 @@ public interface UserDAO {
     @Query("SELECT password FROM user WHERE user_name =:userName")
     String getPassword(String userName);
 
+    @Query("SELECT account_type FROM user WHERE user_name=:userName")
+    String getAccountType(String userName);
+
     @Insert
     void insertUser(User...users);
 
