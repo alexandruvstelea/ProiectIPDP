@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarbersApp">
         <activity
+            android:name=".SelectEmployerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomePageActivityBarber"
+            android:exported="false" />
+        <activity
+            android:name=".ShopDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateShopActivity"
             android:exported="false" />
         <activity

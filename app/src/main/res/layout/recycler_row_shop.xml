@@ -24,4 +24,11 @@
         android:textColor="@color/white"
         android:textSize="17dp"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/detailsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E91E63"
+        android:text="View details" />
 </LinearLayout>

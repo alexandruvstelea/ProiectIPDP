@@ -38,7 +38,7 @@ public class CreateShopActivity extends AppCompatActivity {
 
         addShopButton.setOnClickListener(addShop -> {
             if (!(shopNameInput.getText().toString().isEmpty() || shopStreetInput.getText().toString().isEmpty() || shopNumberInput.getText().toString().isEmpty() || shopCityInput.getText().toString().isEmpty())) {
-                String shopName = shopNameInput.getText().toString();
+                String shopName = shopNameInput.getText().toString().toUpperCase();
                 String shopAddress = "Str. " + shopStreetInput.getText().toString().toUpperCase() + ", Nr. " + shopNumberInput.getText().toString().toUpperCase() + ", " + shopCityInput.getText().toString().toUpperCase();
                 String ownerUserName = currentUserName;
                 createShop(shopName, shopAddress, ownerUserName);
@@ -65,7 +65,7 @@ public class CreateShopActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else
-            Toast.makeText(CreateShopActivity.this, "Please enter all the data!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateShopActivity.this, "Barber shop with the same name already exists", Toast.LENGTH_LONG).show();
     }
 
     private boolean checkUniqueShopName(List<String> shopNamesList, String newName) {

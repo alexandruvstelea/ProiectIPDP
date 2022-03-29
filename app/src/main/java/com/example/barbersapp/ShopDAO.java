@@ -12,9 +12,18 @@ public interface ShopDAO {
     @Query("SELECT * FROM shop")
     List<Shop> getAllShops();
 
+    @Query("SELECT * FROM shop WHERE owner_user_name =:userName")
+    List<Shop> getOwnerShops(String userName);
+
     @Query("SELECT shop_name FROM shop")
     List<String> getAllExistingShopNames();
 
+    @Query("SELECT id FROM shop WHERE shop_name=:shopName")
+    int getShopID(String shopName);
+
+    @Query("SELECT shop_name FROM shop WHERE id=:employerID")
+    String getEmployerName(int employerID);
+
     @Insert
-    void insertShop(Shop...shops);
+    void insertShop(Shop... shops);
 }

@@ -67,7 +67,7 @@
         android:fontFamily="@font/audiowide"/>
 
     <TextView
-        android:id="@+id/welcomeText"
+        android:id="@+id/welcomeTextBarber"
         android:layout_width="187dp"
         android:layout_height="17dp"
         android:fontFamily="@font/audiowide"

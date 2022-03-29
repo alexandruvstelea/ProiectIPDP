@@ -49,7 +49,11 @@ public class LogInActivity extends AppCompatActivity {
                         Toast.makeText(LogInActivity.this, "LogIn successful", Toast.LENGTH_SHORT).show();
                         break;
                     case "BARBER":
-                        Toast.makeText(LogInActivity.this, "BARBER GUI NOT YET IMPLEMENTED", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LogInActivity.this, HomePageActivityBarber.class);
+                        intent.putExtra("username", userName);
+                        startActivity(intent);
+                        finish();
+                        Toast.makeText(LogInActivity.this, "LogIn successful", Toast.LENGTH_SHORT).show();
                         break;
                     case "SHOP MANAGER":
                         intent = new Intent(LogInActivity.this, HomePageActivityManager.class);

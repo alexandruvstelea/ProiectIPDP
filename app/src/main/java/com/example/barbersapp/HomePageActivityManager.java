@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,6 +24,10 @@ public class HomePageActivityManager extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_manager);
+
+        //CHANGE ACTIVITY BG COLOR
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(Color.rgb(0, 0, 0));
 
         addShop = findViewById(R.id.addNewShopButton);
 
@@ -50,8 +57,12 @@ public class HomePageActivityManager extends AppCompatActivity {
 
     private void loadShopList() {
         ShopDB db = ShopDB.getDBInstance(this.getApplicationContext());
-        List<Shop> shopList = db.shopDAO().getAllShops();
+        List<Shop> shopList = db.shopDAO().getOwnerShops(currentUserName);
         shopListAdapter.setShopList(shopList);
     }
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(HomePageActivityManager.this, "Back button disabled!", Toast.LENGTH_SHORT).show();
+    }
 }

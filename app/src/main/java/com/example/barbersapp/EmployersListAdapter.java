@@ -16,12 +16,13 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopViewHolder> {
+public class EmployersListAdapter extends RecyclerView.Adapter<EmployersListAdapter.EmployersViewHolder> {
 
     private Context context;
     private List<Shop> shopList;
+    private String currentUserName;
 
-    public ShopListAdapter(Context context) {
+    public EmployersListAdapter(Context context) {
         this.context = context;
     }
 
@@ -32,23 +33,24 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopVi
 
     @NonNull
     @Override
-    public ShopListAdapter.ShopViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EmployersListAdapter.EmployersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_row_shop, parent, false);
-        return new ShopViewHolder(view);
+        return new EmployersViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ShopListAdapter.ShopViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EmployersListAdapter.EmployersViewHolder holder, int position) {
         holder.shopName.setText(this.shopList.get(position).getShopName());
         holder.shopAddress.setText(this.shopList.get(position).getShopAddress());
+        holder.viewDetailsButton.setText("Apply");
     }
 
-    public class ShopViewHolder extends RecyclerView.ViewHolder {
+    public class EmployersViewHolder extends RecyclerView.ViewHolder {
 
         TextView shopName, shopAddress;
         Button viewDetailsButton;
 
-        public ShopViewHolder(View view) {
+        public EmployersViewHolder(View view) {
             super(view);
             shopName = view.findViewById(R.id.shopNameText);
             shopAddress = view.findViewById(R.id.shopAddressText);
@@ -59,8 +61,13 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopVi
 
         public void onClick(View v) {
             if (v.getId() == viewDetailsButton.getId()) {
-                Intent intent = new Intent(context, ShopDetailsActivity.class);
-                intent.putExtra("shopname", shopName.getText().toString());
+                UserDB userDB = UserDB.getDBInstance(context.getApplicationContext());
+                ShopDB shopDB = ShopDB.getDBInstance(context.getApplicationContext());
+                int shopID = shopDB.shopDAO().getShopID(shopName.getText().toString());
+                userDB.userDAO().updateEmployerID(shopID,currentUserName);
+                Toast.makeText(context, "Successfully applied to "+ shopName.getText().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, HomePageActivityBarber.class);
+                intent.putExtra("username", currentUserName);
                 context.startActivity(intent);
             }
         }
@@ -69,6 +76,10 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ShopVi
     @Override
     public int getItemCount() {
         return this.shopList.size();
+    }
+
+    public void setCurrentUserName(String newName){
+        currentUserName = newName;
     }
 
 }
