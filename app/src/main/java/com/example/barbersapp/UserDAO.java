@@ -27,6 +27,9 @@ public interface UserDAO {
     @Query("UPDATE user SET employer_id=:newEmployerID WHERE user_name=:userName")
     void updateEmployerID(int newEmployerID, String userName);
 
+    @Query("SELECT * FROM user WHERE employer_id=:shopID")
+    List<User> getEmployeesByID(int shopID);
+
     @Insert
     void insertUser(User...users);
 

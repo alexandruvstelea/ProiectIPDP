@@ -12,8 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class EmployersListAdapter extends RecyclerView.Adapter<EmployersListAdapter.EmployersViewHolder> {
@@ -64,8 +62,8 @@ public class EmployersListAdapter extends RecyclerView.Adapter<EmployersListAdap
                 UserDB userDB = UserDB.getDBInstance(context.getApplicationContext());
                 ShopDB shopDB = ShopDB.getDBInstance(context.getApplicationContext());
                 int shopID = shopDB.shopDAO().getShopID(shopName.getText().toString());
-                userDB.userDAO().updateEmployerID(shopID,currentUserName);
-                Toast.makeText(context, "Successfully applied to "+ shopName.getText().toString(), Toast.LENGTH_SHORT).show();
+                userDB.userDAO().updateEmployerID(shopID, currentUserName);
+                Toast.makeText(context, "Successfully applied to " + shopName.getText().toString(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, HomePageActivityBarber.class);
                 intent.putExtra("username", currentUserName);
                 context.startActivity(intent);
@@ -78,7 +76,7 @@ public class EmployersListAdapter extends RecyclerView.Adapter<EmployersListAdap
         return this.shopList.size();
     }
 
-    public void setCurrentUserName(String newName){
+    public void setCurrentUserName(String newName) {
         currentUserName = newName;
     }
 

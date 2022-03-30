@@ -45,7 +45,7 @@ public class HomePageActivityBarber extends AppCompatActivity {
 
         changeEmployer = findViewById(R.id.changeEmplyerButton);
 
-        changeEmployer.setOnClickListener(changeEmp ->{
+        changeEmployer.setOnClickListener(changeEmp -> {
             Intent intent = new Intent(HomePageActivityBarber.this, SelectEmployerActivity.class);
             intent.putExtra("username", currentUserName);
             startActivity(intent);
@@ -53,7 +53,7 @@ public class HomePageActivityBarber extends AppCompatActivity {
         });
 
         logOut = findViewById(R.id.logOutButton);
-        logOut.setOnClickListener(logO ->{
+        logOut.setOnClickListener(logO -> {
             Intent intent = new Intent(HomePageActivityBarber.this, LogInActivity.class);
             startActivity(intent);
             finish();

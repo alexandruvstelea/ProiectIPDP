@@ -20,11 +20,9 @@ public class HomePageActivityClient extends AppCompatActivity {
         currentUserName = extras.getString("username");
 
         welcomeMessage = findViewById(R.id.welcomeTextBarber);
-        welcomeMessage.setText("Welcome "+ currentUserName + " !");
+        welcomeMessage.setText("Welcome " + currentUserName + " !");
 
     }
-
-
 
     @Override
     public void onBackPressed() {

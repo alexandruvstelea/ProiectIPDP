@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".HomePageActivityManager">
 
+    <Button
+        android:id="@+id/exitButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#E91E63"
+        android:fontFamily="@font/audiowide"
+        android:text="Log Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAppointmentButton"
+        app:layout_constraintVertical_bias="0.138" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shopsRV"
         android:layout_width="363dp"
@@ -23,11 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#E91E63"
-        android:text="Add New Shop"
         android:fontFamily="@font/audiowide"
+        android:text="Add New Shop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shopsRV"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0.173" />
 </androidx.constraintlayout.widget.ConstraintLayout>

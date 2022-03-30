@@ -18,7 +18,7 @@ public class HomePageActivityManager extends AppCompatActivity {
 
     private ShopListAdapter shopListAdapter;
     private String currentUserName;
-    private Button addShop;
+    private Button addShop, logOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,13 @@ public class HomePageActivityManager extends AppCompatActivity {
         addShop.setOnClickListener(addShop -> {
             Intent intent = new Intent(HomePageActivityManager.this, CreateShopActivity.class);
             intent.putExtra("username", currentUserName);
+            startActivity(intent);
+            finish();
+        });
+
+        logOut = findViewById(R.id.exitButton2);
+        logOut.setOnClickListener(logO -> {
+            Intent intent = new Intent(HomePageActivityManager.this, LogInActivity.class);
             startActivity(intent);
             finish();
         });

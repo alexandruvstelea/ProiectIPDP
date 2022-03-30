@@ -24,6 +24,9 @@ public interface ShopDAO {
     @Query("SELECT shop_name FROM shop WHERE id=:employerID")
     String getEmployerName(int employerID);
 
+    @Query("SELECT owner_user_name FROM shop WHERE shop_name=:shopName")
+    String getOwnerUserName(String shopName);
+
     @Insert
     void insertShop(Shop... shops);
 }
