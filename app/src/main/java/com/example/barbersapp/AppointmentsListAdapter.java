@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsListAdapter.AppointmentsViewHolder>{
+public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsListAdapter.AppointmentsViewHolder> {
 
     private Context context;
     private List<Appointment> appointmentsList;
@@ -60,7 +60,7 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
                 String[] hD = hourDate.getText().toString().split(" ");
                 String[] bS = barberShop.getText().toString().split(" ");
                 AppointmentsDB appointmentsDB = AppointmentsDB.getDBInstance(context.getApplicationContext());
-                appointmentsDB.appointmentsDAO().updateStatus(false,bS[0],hD[1],Integer.parseInt(hD[0]));
+                appointmentsDB.appointmentsDAO().updateStatus(false, bS[0], hD[1], Integer.parseInt(hD[0]));
                 Toast.makeText(context, "Appointment canceled", Toast.LENGTH_SHORT).show();
                 removeItem(getAbsoluteAdapterPosition());
             }

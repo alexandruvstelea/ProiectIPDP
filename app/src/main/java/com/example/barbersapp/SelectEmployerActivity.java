@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.List;
 
@@ -19,6 +21,10 @@ public class SelectEmployerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_employer);
+
+        //CHANGE ACTIVITY BG COLOR
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(Color.rgb(0, 0, 0));
 
         Bundle extras = getIntent().getExtras();
         currentUserName = extras.getString("username");

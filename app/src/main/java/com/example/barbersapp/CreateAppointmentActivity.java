@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +31,10 @@ public class CreateAppointmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_appointment);
+
+        //CHANGE ACTIVITY BG COLOR
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(Color.rgb(0, 0, 0));
 
         Bundle extras = getIntent().getExtras();
         currentUserName = extras.getString("username");

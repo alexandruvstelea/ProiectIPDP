@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(entities = {Appointment.class}, version = 1)
-public abstract class  AppointmentsDB extends RoomDatabase {
+public abstract class AppointmentsDB extends RoomDatabase {
 
     public abstract AppointmentsDAO appointmentsDAO();
 
