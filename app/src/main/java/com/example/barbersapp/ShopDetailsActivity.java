@@ -55,6 +55,8 @@ public class ShopDetailsActivity extends AppCompatActivity {
         int shopID = shopDB.shopDAO().getShopID(shopName.getText().toString());
         List<User> employeesList = userDB.userDAO().getEmployeesByID(shopID);
         employedBarbersAdapter.setEmployeesList(employeesList);
+        userDB.close();
+        shopDB.close();
     }
 
     @Override
@@ -63,7 +65,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
         String ownerUserName = shopDB.shopDAO().getOwnerUserName(currentShopName);
         Intent intent = new Intent(ShopDetailsActivity.this, HomePageActivityManager.class);
         intent.putExtra("username", ownerUserName);
-        startActivity(intent);
         startActivity(intent);
         finish();
     }

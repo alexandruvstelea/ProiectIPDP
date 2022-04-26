@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarbersApp">
         <activity
+            android:name=".CreateAppointmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".SelectEmployerActivity"
             android:exported="false" />
         <activity

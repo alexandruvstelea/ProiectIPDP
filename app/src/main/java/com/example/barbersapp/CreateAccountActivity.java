@@ -48,6 +48,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                     String type = accountTypeInput.getSelectedItem().toString();
                     int employerID = -1;
                     createUser(userName, firstName, lastName, password, gender, type, employerID);
+                    Intent intent = new Intent(CreateAccountActivity.this, LogInActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else
                     Toast.makeText(CreateAccountActivity.this, "You need to be at least 16yo to register!", Toast.LENGTH_SHORT).show();
             else
@@ -68,9 +71,6 @@ public class CreateAccountActivity extends AppCompatActivity {
             User user = new User(userName.toUpperCase(), firstName.toUpperCase(), lastName.toUpperCase(), password, gender.toUpperCase(), type.toUpperCase(), employerID);
             db.userDAO().insertUser(user);
             Toast.makeText(CreateAccountActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(CreateAccountActivity.this, LogInActivity.class);
-            startActivity(intent);
-            finish();
         } else
             Toast.makeText(CreateAccountActivity.this, "UserName already exists", Toast.LENGTH_SHORT).show();
     }
