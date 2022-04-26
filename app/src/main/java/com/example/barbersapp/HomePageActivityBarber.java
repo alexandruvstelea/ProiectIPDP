@@ -1,6 +1,9 @@
 package com.example.barbersapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,12 +13,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class HomePageActivityBarber extends AppCompatActivity {
 
     private TextView welcomeText, currentEmployer;
     private Button changeEmployer, logOut;
     private String currentUserName;
     private int employerID;
+    private AppointmentsListAdapterBarber appointmentsListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +55,6 @@ public class HomePageActivityBarber extends AppCompatActivity {
             Intent intent = new Intent(HomePageActivityBarber.this, SelectEmployerActivity.class);
             intent.putExtra("username", currentUserName);
             startActivity(intent);
-            //finish();
         });
 
         logOut = findViewById(R.id.logOutButton);
@@ -59,6 +64,27 @@ public class HomePageActivityBarber extends AppCompatActivity {
             finish();
         });
 
+        initRV();
+        loadAppointmentsList();
+
+    }
+
+    private void initRV() {
+        RecyclerView recyclerView = findViewById(R.id.appointmnetsRVBarber);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        appointmentsListAdapter = new AppointmentsListAdapterBarber(this);
+        recyclerView.setAdapter(appointmentsListAdapter);
+    }
+
+    public void loadAppointmentsList() {
+        AppointmentsDB appointmentsDB = AppointmentsDB.getDBInstance(this.getApplicationContext());
+        UserDB userDB = UserDB.getDBInstance(this.getApplicationContext());
+        String barberFirstName = userDB.userDAO().getFirstNameByUserName(currentUserName);
+        List<Appointment> appointmentList = appointmentsDB.appointmentsDAO().getBarberAppointments(barberFirstName);
+        appointmentsListAdapter.setAppointmentsList(appointmentList);
     }
 
     @Override

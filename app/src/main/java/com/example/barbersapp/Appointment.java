@@ -10,31 +10,37 @@ import java.util.Date;
 public class Appointment {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name="date")
-    private Date date;
-    @ColumnInfo(name="hour")
+    @ColumnInfo(name = "date")
+    private String date;
+    @ColumnInfo(name = "hour")
     private int hour;
-    @ColumnInfo(name="client_first_name")
+    @ColumnInfo(name = "client_first_name")
     private String clientFirstName;
-    @ColumnInfo(name="barber_first_name")
+    @ColumnInfo(name = "barber_first_name")
     private String barberFirstName;
+    @ColumnInfo(name = "shop_name")
+    private String shopName;
+    @ColumnInfo(name = "status")
+    private boolean status;
 
-    public Appointment(Date date, int hour, String clientFirstName, String barberFirstName) {
+    public Appointment(String date, int hour, String clientFirstName, String barberFirstName, String shopName, boolean status) {
         this.date = date;
         this.hour = hour;
         this.clientFirstName = clientFirstName;
         this.barberFirstName = barberFirstName;
+        this.shopName = shopName;
+        this.status = status;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getHour(){
+    public int getHour() {
         return hour;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -45,6 +51,10 @@ public class Appointment {
     public String getBarberFirstName() {
         return barberFirstName;
     }
+
+    public String getShopName() { return shopName; }
+
+    public boolean getStatus() { return status; }
 
     public void setId(int id) {
         this.id = id;

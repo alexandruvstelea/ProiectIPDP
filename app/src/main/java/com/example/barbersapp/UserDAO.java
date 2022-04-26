@@ -30,8 +30,12 @@ public interface UserDAO {
     @Query("SELECT * FROM user WHERE employer_id=:shopID")
     List<User> getEmployeesByID(int shopID);
 
-    @Query("SELECT first_name FROM user WHERE account_type='BARBER'")
-    List<String> getAllBarbersFirstNames();
+
+    @Query("SELECT first_name FROM user WHERE account_type='BARBER' AND employer_id=:shopID")
+    List<String> getAllBarbersFirstNamesAtSelectedShop(int shopID);
+
+    @Query("SELECT first_name FROM user WHERE user_name=:userName")
+    String getFirstNameByUserName(String userName);
 
     @Insert
     void insertUser(User...users);

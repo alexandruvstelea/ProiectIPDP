@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsListAdapter.AppointmentsViewHolder>{
+public class AppointmentsListAdapterBarber extends RecyclerView.Adapter<AppointmentsListAdapterBarber.AppointmentsViewHolder>{
 
     private Context context;
     private List<Appointment> appointmentsList;
 
-    public AppointmentsListAdapter(Context context) {
+    public AppointmentsListAdapterBarber(Context context) {
         this.context = context;
     }
 
@@ -29,28 +29,28 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
 
     @NonNull
     @Override
-    public AppointmentsListAdapter.AppointmentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AppointmentsListAdapterBarber.AppointmentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_row_shop, parent, false);
-        return new AppointmentsListAdapter.AppointmentsViewHolder(view);
+        return new AppointmentsListAdapterBarber.AppointmentsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AppointmentsListAdapter.AppointmentsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AppointmentsListAdapterBarber.AppointmentsViewHolder holder, int position) {
         holder.hourDate.setText(this.appointmentsList.get(position).getHour() + " " + this.appointmentsList.get(position).getDate());
-        holder.barberShop.setText(this.appointmentsList.get(position).getBarberFirstName() + " " + this.appointmentsList.get(position).getShopName());
+        holder.clientShop.setText(this.appointmentsList.get(position).getClientFirstName() + " " + this.appointmentsList.get(position).getShopName());
         holder.cancelButton.setText("Cancel");
     }
 
 
     public class AppointmentsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView hourDate, barberShop;
+        TextView hourDate, clientShop;
         Button cancelButton;
 
         public AppointmentsViewHolder(View view) {
             super(view);
             hourDate = view.findViewById(R.id.shopNameText);
-            barberShop = view.findViewById(R.id.shopAddressText);
+            clientShop = view.findViewById(R.id.shopAddressText);
             cancelButton = view.findViewById(R.id.detailsButton);
             cancelButton.setOnClickListener(this::onClick);
         }
@@ -58,9 +58,9 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         public void onClick(View v) {
             if (v.getId() == cancelButton.getId()) {
                 String[] hD = hourDate.getText().toString().split(" ");
-                String[] bS = barberShop.getText().toString().split(" ");
+                String[] cS = clientShop.getText().toString().split(" ");
                 AppointmentsDB appointmentsDB = AppointmentsDB.getDBInstance(context.getApplicationContext());
-                appointmentsDB.appointmentsDAO().updateStatus(false,bS[0],hD[1],Integer.parseInt(hD[0]));
+                appointmentsDB.appointmentsDAO().updateStatus2(false,cS[0],hD[1],Integer.parseInt(hD[0]));
                 Toast.makeText(context, "Appointment canceled", Toast.LENGTH_SHORT).show();
                 removeItem(getAbsoluteAdapterPosition());
             }

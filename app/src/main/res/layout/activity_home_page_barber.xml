@@ -39,15 +39,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/audiowide"
         android:text="TextView"
+        android:textAlignment="center"
         android:textColor="#E91E63"
         android:textSize="40dp"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintHorizontal_bias="0.395"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/employeesTextView"
@@ -76,7 +76,7 @@
         app:layout_constraintVertical_bias="0.205" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/appointmnetsRV"
+        android:id="@+id/appointmnetsRVBarber"
         android:layout_width="376dp"
         android:layout_height="440dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -95,6 +95,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appointmnetsRV" />
+        app:layout_constraintTop_toBottomOf="@+id/appointmnetsRVBarber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
